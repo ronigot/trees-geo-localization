@@ -9,7 +9,7 @@ trees-geo-localization/
 ├── requirements.txt
 ├── .gitignore
 ├── data/                           # Data directory
-│   ├── depth-maps-visualization/   # Disparity visualization outputs
+│   ├── depth-maps-visualization/   # Disparity visualization outputs (optional)
 │   ├── disparities/               # Disparity .npy files from monodepth
 │   ├── images/                    # Source GSV images (400x400)
 │   ├── images-with-bboxes/        # Images with bbox annotations (optional)
@@ -32,6 +32,12 @@ trees-geo-localization/
         └── visualize_bboxes.py   # Bbox visualization tool
 ```
 
+## Setup
+```bash
+git clone https://github.com/ronigot/trees-geo-localization.git
+cd trees-geo-localization
+pip install -r requirements.txt
+```
 
 ## Quick Start
 
@@ -70,14 +76,19 @@ sh ./utils/get_model.sh model_kitti models/
 
 *Option 1: Single image (using original monodepth script):*
 ```bash
+# Make sure monodepth environment is activated
+conda activate monodepth
+
 python monodepth_simple.py --image_path your_image.jpg --checkpoint_path models/model_kitti
 ```
 
 *Option 2: Batch processing (using our utility):*
 ```bash
+# Make sure monodepth environment is activated
+conda activate monodepth
+
 # Copy our batch script to monodepth root directory (same location as monodepth_simple.py)
-cp src/utils/monodepth_batch.py /path/to/monodepth/
-cd /path/to/monodepth/
+cp /path/to/trees-geo-localization/src/utils/monodepth_batch.py .
 
 # Run batch processing
 python monodepth_batch.py --images_dir /path/to/images --checkpoint_path models/model_kitti --output_dir /path/to/disparities
@@ -173,6 +184,8 @@ python src/trunk_occluded/optimized_projection.py \
 ## Utility Scripts
 
 ### Visualize Bounding Boxes
+This utility helps visualize the bounding boxes overlaid on your images for verification. It numbers each tree according to the order in your CSV/Excel file, making it easier to identify which tree corresponds to which `tree_index`.
+
 ```bash
 python src/utils/visualize_bboxes.py \
     --images_dir data/images \
@@ -181,18 +194,9 @@ python src/utils/visualize_bboxes.py \
 ```
 
 ### Batch Disparity Generation
-For generating disparity maps from multiple images using monodepth:
+For generating disparity maps from multiple images using monodepth, use our custom `monodepth_batch.py` script. This extends the original monodepth to process multiple images efficiently.
 
-```bash
-# Copy our batch script to monodepth root directory (same location as monodepth_simple.py)
-cp src/utils/monodepth_batch.py /path/to/monodepth/
-cd /path/to/monodepth/
-
-# Run batch processing
-python monodepth_batch.py --images_dir /path/to/images --checkpoint_path models/model_kitti --output_dir /path/to/disparities
-```
-
-**Note:** The `monodepth_batch.py` script is our custom extension of the original monodepth for processing multiple images efficiently.
+See the complete setup and usage instructions in the **"Generate Disparity Maps"** section above.
 
 
 
