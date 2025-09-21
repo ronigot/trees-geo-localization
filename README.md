@@ -62,7 +62,9 @@ Disparity maps are generated using the [monodepth](https://github.com/mrharicot/
 # Create separate conda environment (required for TensorFlow 1.x)
 conda create -n monodepth python=3.7
 conda activate monodepth
-pip install tensorflow==1.15.0 matplotlib pillow
+
+# Install deterministic versions known to work with monodepth (TF1.15)
+pip install numpy==1.19.5 tensorflow==1.15.0 matplotlib pillow
 
 # Clone and setup monodepth repository
 git clone https://github.com/mrharicot/monodepth.git
