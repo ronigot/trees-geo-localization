@@ -1,0 +1,12 @@
+{
+    "inverse_depth_scale": 0.19150030550357217,
+    "calibration": {
+        "camera_lat": 32.05332566340407,
+        "camera_lon": 34.81022952939507,
+        "tree_lat": 32.0532986,
+        "tree_lon": 34.8101803,
+        "distance_meters": 5.5300562119519645,
+        "disp_avg": 0.034628998,
+        "depth_model": "monodepth (inverse depth)"
+    }
+}
