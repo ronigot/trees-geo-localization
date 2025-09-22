@@ -283,7 +283,7 @@ def main() -> int:
     p.add_argument('--crown_stat', choices=['median', 'p90'], default='median')
 
     # projection tuning
-    p.add_argument('--projection_factor', type=float, default=0.7, help='Fraction of (tree_height - camera_height) added to range')
+    p.add_argument('--projection_factor', type=float, default=0.3, help='Fraction of (tree_height - camera_height) added to range')
     p.add_argument('--tree_height_cap', type=float, default=10.0)
 
     p.add_argument('--debug', action='store_true')
